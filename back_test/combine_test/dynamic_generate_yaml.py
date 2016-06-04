@@ -92,16 +92,16 @@ def generate_according_jeff(rawfilename,output):
         yaml.dump(data, f)
 if __name__ == "__main__":
     arg = [u"金融行业"]
-  #  arg = [u"医疗器械"]
-  #  arg = [u"生物制药"]
+    arg = [u"医疗器械"]
+    arg = [u"生物制药"]
   #  arg = [u"机械行业"]
   #  arg = [u"酿酒行业"]
   #  arg = [u"传媒娱乐"]
   #  arg = [u"酒店旅游"]
   #  arg = [u"电子信息"]
-    filename = "jeff_stocks"
+    filename = "biology"
 
-    generate_according_jeff("jeff",filename)
+    generate_according_industry(filename,arg)
     #generate_according_sme(filename)
 
     

@@ -1,0 +1,12 @@
+stock:
+- !!python/tuple ['600055', !!python/str "\u534E\u6DA6\u4E07\u4E1C"]
+- !!python/tuple ['600297', !!python/str "\u5E7F\u6C47\u6C7D\u8F66"]
+- !!python/tuple ['600587', !!python/str "\u65B0\u534E\u533B\u7597"]
+- !!python/tuple ['600763', !!python/str "\u901A\u7B56\u533B\u7597"]
+- !!python/tuple ['603309', !!python/str "\u7EF4\u529B\u533B\u7597"]
+- !!python/tuple ['000150', !!python/str "\u5B9C\u534E\u5065\u5EB7"]
+- !!python/tuple ['002223', !!python/str "\u9C7C\u8DC3\u533B\u7597"]
+- !!python/tuple [002382, !!python/str "\u84DD\u5E06\u533B\u7597"]
+- !!python/tuple ['002432', !!python/str "\u4E5D\u5B89\u533B\u7597"]
+- !!python/tuple ['002551', !!python/str "\u5C1A\u8363\u533B\u7597"]
+- !!python/tuple ['002614', !!python/str "\u8499\u53D1\u5229"]

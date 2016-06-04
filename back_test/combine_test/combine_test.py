@@ -48,13 +48,13 @@ class combine_test():
         if source == "file":
             data = load_data_from_file(stock_number)
         else:
-            data = load_data_from_tushare(stock_number, start_date = '2000-01-01', end_date = '2014-03-09')
+            data = load_data_from_tushare(stock_number, start_date = '2009-10-30', end_date = '2016-06-18')
             #data = load_data_from_tushare_real_time(stock_number, start_date = '2015-11-01')
         print data
         if len(data.index)>0:
             data["mp"] = data["amount"]/data["vol"]
             data["mpdiff"] = data["close price"] - data["mp"] 
-            print data
+            print data[-10:]
             return data
         else:
             return data
@@ -151,6 +151,7 @@ class combine_test():
                     self.sell(stock)
                 
                 print "stock {} {}".format(stock.get_name(),decision)
+                print "stock {} {}".format(stock.get_name(),stock.get_current_price())
             else:
                 stock.set_finish_flag(True)
                 self.sell(stock)

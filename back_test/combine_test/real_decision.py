@@ -48,7 +48,7 @@ class decision_maker():
         if len(data.index)>0:
             data["mp"] = data["amount"]/data["vol"]
             data["mpdiff"] = data["close price"] - data["mp"] 
-            print data
+            print data[-10:]
             return data
         else:
             return data
