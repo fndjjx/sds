@@ -53,13 +53,6 @@ class combine_test():
             #data = load_data_from_mysql(stock_number)
             #data = load_data_from_tushare_real_time(stock_number, start_date = '2015-11-01')
         print data
-        if len(data.index)>0:
-            data["mp"] = data["amount"]/data["vol"]
-            data["mpdiff"] = data["close price"] - data["mp"] 
-            print data[-10:]
-            return data
-        else:
-            return data
     
     def register(self):
         for stock in self.global_config["stock"]:
