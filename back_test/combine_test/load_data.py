@@ -3,6 +3,7 @@ import tushare as ts
 from read_web import get_sina_data
 import os
 import traceback
+import MySQLdb as md
 
 def load_data_from_file(stock_number):
     prefix = "test_data/"
@@ -189,6 +190,39 @@ def load_data_from_tushare_csv_sina(stock_number):
         return dfdata
     except:
         traceback.print_exc() 
+        data = {"open price":[], "high price":[], "low price":[], "close price":[], "vol":[], "amount": []}
+        dfdata = pd.DataFrame(data)
+        return dfdata
+
+
+def load_data_from_mysql(stock_number):
+
+    def open_db(user,passwd,dbname):
+        cxn = md.connect(db=dbname, user=user, passwd=passwd)
+        return cxn
+
+    def read_sql(conn,tablename):
+        sql = 'select * from {}'.format(tablename)
+        return pd.read_sql(sql,conn)
+
+    try:
+        conn = open_db('root','root','ts_db')
+        print "stock number for mysql {}".format(stock_number)
+        raw_data = read_sql(conn,stock_number+'nofuquan')
+        open_price = raw_data["open"]
+        high_price = raw_data["high"]
+        low_price = raw_data["low"]
+        close_price = raw_data["close"]
+        vol = raw_data["volume"]
+        amount = raw_data["amount"]
+
+        fuquan_data = read_sql(conn,stock_number+'fuquan')
+        fuquan_close_price = fuquan_data["close"]
+        fuquan_open_price = fuquan_data["open"]
+        data = {"open price":open_price, "high price":high_price, "low price":low_price, "close price":close_price, "vol":vol, "amount": amount, "fuquan close price": fuquan_close_price, "fuquan open price": fuquan_open_price}
+        dfdata = pd.DataFrame(data)
+        return dfdata
+    except:
         data = {"open price":[], "high price":[], "low price":[], "close price":[], "vol":[], "amount": []}
         dfdata = pd.DataFrame(data)
         return dfdata

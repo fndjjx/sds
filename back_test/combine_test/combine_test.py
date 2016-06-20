@@ -13,6 +13,7 @@ from stock import stock_object
 from load_data import load_data_from_file
 from load_data import load_data_from_tushare
 from load_data import load_data_from_tushare_real_time
+from load_data import load_data_from_mysql
 from strategy import simulate
 
 
@@ -48,7 +49,8 @@ class combine_test():
         if source == "file":
             data = load_data_from_file(stock_number)
         else:
-            data = load_data_from_tushare(stock_number, start_date = '2009-10-30', end_date = '2016-06-18')
+            data = load_data_from_tushare(stock_number, start_date = '2000-01-05', end_date = '2016-06-18')
+            #data = load_data_from_mysql(stock_number)
             #data = load_data_from_tushare_real_time(stock_number, start_date = '2015-11-01')
         print data
         if len(data.index)>0:
@@ -93,9 +95,14 @@ class combine_test():
                     simulate_result.append((stock,result,decision,position,stock.get_name()))
                 else:
                     stock.set_finish_flag(True)
-
-        simulate_result = filter(lambda x:x[1]>11000, simulate_result)
-        simulate_result = sorted(simulate_result, key=lambda x:x[1], reverse=True)
+       # sum_result = []
+       # for i in simulate_result:
+       #     sum_result.append(i[1])
+       # if len(simulate_result)!=0:
+       #     result_mean = np.mean(sum_result)
+       #     result_std = np.std(sum_result)
+       #     simulate_result = filter(lambda x:x[1]<result_mean, simulate_result)
+        simulate_result = sorted(simulate_result, key=lambda x:x[1])#, reverse=True)
         print simulate_result
 
 
@@ -104,6 +111,7 @@ class combine_test():
                 for stock_pair in simulate_result:
                     if stock_pair[2] == "buy":
                         if self.buy(stock_pair[0], self.total_asset/2.0) == False:
+                        #if self.buy(stock_pair[0], 10000) == False:
                             break
             else:
                 for stock_pair in simulate_result:

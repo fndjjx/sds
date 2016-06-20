@@ -115,8 +115,8 @@ class decision_maker():
             simulate_result.append((stock,result,decision,position,stock.get_number()))
 
         print simulate_result
-        simulate_result = filter(lambda x:x[1]>11000, simulate_result)
-        simulate_result = sorted(simulate_result, key=lambda x:x[1], reverse=True)
+        #simulate_result = filter(lambda x:x[1]>11000, simulate_result)
+        simulate_result = sorted(simulate_result, key=lambda x:x[1])#, reverse=True)
         print simulate_result
         for stock_pair in simulate_result:
             if stock_pair[2] == "buy":
