@@ -176,6 +176,10 @@ def decision_func(close_price, mp, mpdiff):
         if mcde1 == 1 and mcde2 == 1 and mcde3==1:
             mcde = 1
 
+    ##################
+
+
+    #################
     ###############################################################
 #        g = mixture.GMM(n_components=2)
 #        obs=close_price[-5:]
@@ -216,7 +220,7 @@ def decision_func(close_price, mp, mpdiff):
 #
 #    ###############################################################
         jede=0
-        if  mpdiff[-1]<0 and mean_de==1 :#and   mcde==1 :#and gmmde==1:#  and rdde==1:
+        if  mpdiff[-1]<0 and mean_de==1 and ts.adfuller(mpdiff[-10:], 1)[1]>0.5:#and   mcde==1 :#and gmmde==1:#  and rdde==1:
             jede=1
         if (mpdiff[-1]>0 and mean_de==2):
             jede=2
